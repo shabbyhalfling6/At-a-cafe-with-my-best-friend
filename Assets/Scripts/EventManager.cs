@@ -11,7 +11,7 @@ public class EventManager : MonoBehaviour {
 
     //fungus
     public Flowchart eventFlowchart;
-    List<string> eventBlockNames;
+    public List<string> eventBlockNames;
 
 	// Use this for initialization
 	void Start () {

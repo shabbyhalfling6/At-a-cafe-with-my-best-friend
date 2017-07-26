@@ -22,8 +22,8 @@ public class ConversationManager : MonoBehaviour {
     //fungus
     public Flowchart conversationFlowchart; //the flowchart
     public Flowchart complimentFlowchart;
-    List<string> conversationBlockNames; //put down the individual block names
-    List<string> complimentBlockNames;
+    public List<string> conversationBlockNames; //put down the individual block names
+    public List<string> complimentBlockNames;
 
 	// Use this for initialization
 	void Start () {
