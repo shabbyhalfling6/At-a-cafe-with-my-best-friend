@@ -20,8 +20,10 @@ public class ConversationManager : MonoBehaviour {
     bool friendEligible = true; //if friend is doing a thing she won't be eligible to talk to
 
     //fungus
-    public Flowchart flowchart; //the flowchart
-    public List<string> blockNames; //put down the individual block names
+    public Flowchart conversationFlowchart; //the flowchart
+    public Flowchart complimentFlowchart;
+    List<string> conversationBlockNames; //put down the individual block names
+    List<string> complimentBlockNames;
 
 	// Use this for initialization
 	void Start () {
@@ -32,8 +34,8 @@ public class ConversationManager : MonoBehaviour {
         //for you
 
         //fungus
-        blockNames.Add("Start");
-        blockNames.Add("Example");
+        conversationBlockNames.Add("Start");
+        conversationBlockNames.Add("Example");
 	}
 	
 	// Update is called once per frame
@@ -63,19 +65,22 @@ public class ConversationManager : MonoBehaviour {
     {
         //call the convo block in fungus
         //roll for random block
-        int index = Random.Range(0, blockNames.Count);
-        flowchart.ExecuteBlock(blockNames[index]);
-        blockNames.RemoveAt(index);
+        int index = Random.Range(0, conversationBlockNames.Count);
+        conversationFlowchart.ExecuteBlock(conversationBlockNames[index]);
+        conversationBlockNames.RemoveAt(index);
     }
 
-    void EndConvoBlock()
+    public void EndConvoBlock()
     {
-        havingConvo = false;
         convoCeasedTime = Time.time;
-        nextConvoStart = convoCeasedTime + Random.Range(15, 60);
+        nextConvoStart = convoCeasedTime + Random.Range(5, 6);
+        havingConvo = false;
+    }
+
+    public void FriendEligibleTrue()
+    {
         //WaitForSeconds(5);
         friendEligible = true;
-        //convo ends and switches havingConvo to false
     }
 
     void ClickOnFriend()
@@ -89,6 +94,10 @@ public class ConversationManager : MonoBehaviour {
     void CallCompliment()
     {
         //call a compliment block in unity
+        //roll for random block
+        int index = Random.Range(0, complimentBlockNames.Count);
+        complimentFlowchart.ExecuteBlock(conversationBlockNames[index]);
+        complimentBlockNames.RemoveAt(index);
     }
 
     void DeepAvail()
@@ -103,6 +112,6 @@ public class ConversationManager : MonoBehaviour {
     void AddDeepConvos()
     {
         //add the deep convos to the array
-        blockNames.Add("deeper");
+        conversationBlockNames.Add("deeper");
     }
 }
