@@ -5,24 +5,24 @@ using UnityEngine;
 public class ConversationManager : MonoBehaviour {
 
     //shared
-    float convoCeasedTime;
-    bool havingConvo = false;
-    float conversationChance = 9f;
-    float rollTalking;
-    bool deepConvoAvail = false;
-    float timeTilDeepAvail = 120f;
+    float convoCeasedTime; //the time the most recent conversation stops
+    bool havingConvo = false; //whether or not a conversation is happening
+    float conversationChance = 9f; //chance of starting a conversation compared to complimenting them out of ten
+    float rollTalking; //a random number that is 'rolled' to determine a conversation chance
+    bool deepConvoAvail = false; //whether or not the player can discuss certain topics.  Unlocked after a period of time
+    float timeTilDeepAvail = 120f; // the amount of time until deeper conversation topics are unlocked
 
     //for friend talking to you
-    float nextConvoStart;
+    float nextConvoStart; //the time when friend initiates next conversation
 
     //for you talking to friend
-    bool friendEligible = true;
+    bool friendEligible = true; //if friend is doing a thing she won't be eligible to talk to
 
 	// Use this for initialization
 	void Start () {
         //for friend
-        convoCeasedTime = Time.time;
-        nextConvoStart = convoCeasedTime + Random.Range(15, 60);
+        convoCeasedTime = Time.time; //start the ceased time as time game starts
+        nextConvoStart = convoCeasedTime + Random.Range(15, 60); //set the time the friend starts talking to you
 
         //for you
 
@@ -35,7 +35,7 @@ public class ConversationManager : MonoBehaviour {
 
     void RollChance()
     {
-        rollTalking = Random.Range(1, 10);
+        rollTalking = Random.Range(1, 10);  //determine whether a conversation or compliment will be triggered
         if(rollTalking <= conversationChance)
         {
             CallConvoBlock();
