@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerConversation : MonoBehaviour {
+public class FriendManager : MonoBehaviour {
 
-
+    //friend could be looking ahead, biting pen, writing in journal, sipping coffee
 
 	// Use this for initialization
 	void Start () {

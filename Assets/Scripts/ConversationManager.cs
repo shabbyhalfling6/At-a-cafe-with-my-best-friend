@@ -50,6 +50,7 @@ public class ConversationManager : MonoBehaviour {
 
     void RollChance()
     {
+        //don't roll if compliments list is null
         rollTalking = Random.Range(1, 10);  //determine whether a conversation or compliment will be triggered
         if(rollTalking <= conversationChance)
         {
