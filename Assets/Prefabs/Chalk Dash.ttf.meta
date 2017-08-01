@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 963dc4184c09c694485227bc34d5b98d
+timeCreated: 1501631179
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Chalk Dash
+  fontNames:
+  - Chalk Dash
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
