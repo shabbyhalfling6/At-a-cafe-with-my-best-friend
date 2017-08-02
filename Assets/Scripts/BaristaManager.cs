@@ -11,20 +11,42 @@ public class BaristaManager : MonoBehaviour {
     //barista comes to you
 
     //variables
-    Vector3 behindCounter;
+    public Transform behindCounter;
+    public Transform playerTable;
+    public Transform[] tables;
+
+    private UnityEngine.AI.NavMeshAgent agent;
+
+    private float timer = 0.0f;
+    private float timerIn = 20.0f;
 
 	// Use this for initialization
-	void Start () {
-		
+	void Start ()
+    {
+        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        timer = timerIn;
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
+	void Update ()
+    {
+        timer -= Time.deltaTime;
+
+        if (timer <= 0.0f)
+        {
+            MoveRandTable();
+            timer = timerIn;
+        }
 	}
 
-    void StandAtCounter()
+    void MoveRandTable()
     {
+        int randNum = Random.Range(0, tables.Length);
+        agent.SetDestination(tables[randNum].position);
+    }
 
+    void ServePlayer()
+    {
+        agent.SetDestination(playerTable.position);
     }
 }
