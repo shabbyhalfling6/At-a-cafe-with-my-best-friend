@@ -22,13 +22,13 @@ public class ConversationManager : MonoBehaviour {
     bool friendEligible = true; //if friend is doing a thing she won't be eligible to talk to
 
     //fungus
-    public Flowchart conversationFlowchart; //the flowchart
-    public Flowchart complimentFlowchart;
-    public List<string> conversationBlockNames; //put down the individual block names
-    public List<string> complimentBlockNames;
+    public Flowchart conversationFlowchart; //the flowchart for conversations
+    public Flowchart complimentFlowchart; //the flowchart for compliments
+    public List<string> conversationBlockNames; //put down the individual block names for convos
+    public List<string> complimentBlockNames; //put down the individual block names for compliments
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         //for friend
         convoCeasedTime = Time.time; //start the ceased time as time game starts
         nextConvoStart = convoCeasedTime + Random.Range(minNextTime, maxNextTime); //set the time the friend starts talking to you - should be 15-60
