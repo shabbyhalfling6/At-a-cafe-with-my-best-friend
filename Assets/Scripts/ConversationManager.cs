@@ -13,7 +13,7 @@ public class ConversationManager : MonoBehaviour {
     bool deepConvoAvail = false; //whether or not the player can discuss certain topics.  Unlocked after a period of time
     float timeTilDeepAvail = 120f; // the amount of time until deeper conversation topics are unlocked
     float minNextTime = 15f; // min time until the next random conversation is triggered
-    float maxNextTime = 60f; //max time til the next conversation is triggered
+    float maxNextTime = 45f; //max time til the next conversation is triggered
 
     //for friend talking to you
     float nextConvoStart; //the time when friend initiates next conversation
@@ -101,7 +101,7 @@ public class ConversationManager : MonoBehaviour {
         havingConvo = true;
     }
 
-    void ClickOnFriend()
+    public void ClickOnFriend()
     {
         if (friendEligible)
         {
