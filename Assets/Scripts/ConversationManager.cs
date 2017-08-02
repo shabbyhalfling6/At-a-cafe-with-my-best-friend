@@ -52,10 +52,9 @@ public class ConversationManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(nextConvoStart <= Time.time && !havingConvo)
+		if(nextConvoStart <= Time.time && !havingConvo && friendEligible)
         {
             havingConvo = true;
-            friendEligible = false;
             RollChance();
         }
 	}
@@ -78,6 +77,7 @@ public class ConversationManager : MonoBehaviour {
     {
         //call the convo block in fungus
         //roll for random block
+        friendEligible = false;
         int index = Random.Range(0, conversationBlockNames.Count);
         conversationFlowchart.ExecuteBlock(conversationBlockNames[index]);
         conversationBlockNames.RemoveAt(index);
@@ -103,7 +103,7 @@ public class ConversationManager : MonoBehaviour {
 
     public void ClickOnFriend()
     {
-        if (friendEligible)
+        if (friendEligible == true)
         {
             RollChance();
         }
@@ -113,6 +113,7 @@ public class ConversationManager : MonoBehaviour {
     {
         //call a compliment block in unity
         //roll for random block
+        friendEligible = false;
         int index = Random.Range(0, complimentBlockNames.Count);
         complimentFlowchart.ExecuteBlock(conversationBlockNames[index]);
         complimentBlockNames.RemoveAt(index);
