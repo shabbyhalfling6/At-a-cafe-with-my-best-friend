@@ -43,6 +43,11 @@ public class ConversationManager : MonoBehaviour {
         conversationBlockNames.Add("Pain");
 
         //fungus compliments
+        complimentBlockNames.Add("Linda Evangelista");
+        complimentBlockNames.Add("You're beautiful");
+        complimentBlockNames.Add("I love you");
+        complimentBlockNames.Add("You look great today");
+        complimentBlockNames.Add("Better Person");
     }
 	
 	// Update is called once per frame
