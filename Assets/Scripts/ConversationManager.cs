@@ -12,6 +12,8 @@ public class ConversationManager : MonoBehaviour {
     float rollTalking; //a random number that is 'rolled' to determine a conversation chance
     bool deepConvoAvail = false; //whether or not the player can discuss certain topics.  Unlocked after a period of time
     float timeTilDeepAvail = 120f; // the amount of time until deeper conversation topics are unlocked
+    float minNextTime = 15f; // min time until the next random conversation is triggered
+    float maxNextTime = 60f; //max time til the next conversation is triggered
 
     //for friend talking to you
     float nextConvoStart; //the time when friend initiates next conversation
@@ -29,14 +31,19 @@ public class ConversationManager : MonoBehaviour {
 	void Start () {
         //for friend
         convoCeasedTime = Time.time; //start the ceased time as time game starts
-        nextConvoStart = convoCeasedTime + Random.Range(5, 6); //set the time the friend starts talking to you - should be 15-60
+        nextConvoStart = convoCeasedTime + Random.Range(minNextTime, maxNextTime); //set the time the friend starts talking to you - should be 15-60
 
         //for you
 
-        //fungus
-        conversationBlockNames.Add("Start");
-        conversationBlockNames.Add("Example");
-	}
+        //fungus conversations
+        conversationBlockNames.Add("Food Mishaps");
+        conversationBlockNames.Add("Tinder");
+        conversationBlockNames.Add("Dreams");
+        conversationBlockNames.Add("Mean Girls");
+        conversationBlockNames.Add("Pain");
+
+        //fungus compliments
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -74,7 +81,7 @@ public class ConversationManager : MonoBehaviour {
     public void EndConvoBlock()
     {
         convoCeasedTime = Time.time;
-        nextConvoStart = convoCeasedTime + Random.Range(5, 6);
+        nextConvoStart = convoCeasedTime + Random.Range(minNextTime, maxNextTime);
         havingConvo = false;
     }
 
