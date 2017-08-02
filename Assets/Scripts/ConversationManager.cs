@@ -84,6 +84,11 @@ public class ConversationManager : MonoBehaviour {
         friendEligible = true;
     }
 
+    public void HavingConvoTrue()
+    {
+        havingConvo = true;
+    }
+
     void ClickOnFriend()
     {
         if (friendEligible)
