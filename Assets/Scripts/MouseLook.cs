@@ -37,20 +37,8 @@ public class MouseLook : MonoBehaviour
     private GameObject target;
     private float rotationSpeed;
 
-    private bool invertY = false;
-
     void Update()
     {
-        //toggle for invert y axis
-        if (Input.GetKey(KeyCode.I))
-        {
-            if (invertY)
-                invertY = false;
-            else
-                invertY = true;
-        }
-
-
         if (lookTarget)
         {
             Cursor.lockState = CursorLockMode.None;
@@ -72,7 +60,7 @@ public class MouseLook : MonoBehaviour
                 Quaternion xQuaternion = Quaternion.AngleAxis(rotationX, Vector3.up);
                 Quaternion yQuaternion = Quaternion.AngleAxis(rotationY, -Vector3.right);
                 //y invert
-                if (invertY)
+                if (UIManager.Instance.invertY)
                     yQuaternion = Quaternion.Inverse(yQuaternion);
                 transform.localRotation = originalRotation * xQuaternion * yQuaternion;
             }
@@ -89,7 +77,7 @@ public class MouseLook : MonoBehaviour
                 rotationY = ClampAngle(rotationY, minimumY, maximumY);
                 Quaternion yQuaternion = Quaternion.AngleAxis(-rotationY, Vector3.right);
                 //y invert
-                if (invertY)
+                if (UIManager.Instance.invertY)
                     yQuaternion = Quaternion.Inverse(yQuaternion);
                 transform.localRotation = originalRotation * yQuaternion;
             }

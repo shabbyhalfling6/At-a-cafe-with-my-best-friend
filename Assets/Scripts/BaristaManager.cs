@@ -18,7 +18,9 @@ public class BaristaManager : MonoBehaviour {
     private UnityEngine.AI.NavMeshAgent agent;
 
     private float timer = 0.0f;
-    private float timerIn = 20.0f;
+    public float timerIn = 10.0f;
+
+    private bool servePlayer = false;
 
 	// Use this for initialization
 	void Start ()
@@ -32,7 +34,7 @@ public class BaristaManager : MonoBehaviour {
     {
         timer -= Time.deltaTime;
 
-        if (timer <= 0.0f)
+        if (timer <= 0.0f && !servePlayer)
         {
             MoveRandTable();
             timer = timerIn;
@@ -45,8 +47,9 @@ public class BaristaManager : MonoBehaviour {
         agent.SetDestination(tables[randNum].position);
     }
 
-    void ServePlayer()
+    public void ServePlayer()
     {
         agent.SetDestination(playerTable.position);
+        servePlayer = true;
     }
 }
