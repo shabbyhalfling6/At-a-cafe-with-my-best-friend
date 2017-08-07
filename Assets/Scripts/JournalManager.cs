@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Analytics;
 
 public class JournalManager : MonoBehaviour {
 
@@ -50,11 +49,4 @@ public class JournalManager : MonoBehaviour {
         journalOpened++;
     }
 
-    private void OnApplicationQuit()
-    {
-        Analytics.CustomEvent("journalOpened", new Dictionary<string, object>
-        {
-            { "journalUsed",  journalOpened }
-         });
-    }
 }

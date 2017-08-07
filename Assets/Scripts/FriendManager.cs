@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FriendManager : MonoBehaviour {
+public class FriendManager : MonoBehaviour
+{
+    public int friendEngagments;
 
     //friend could be looking ahead, biting pen, writing in journal, sipping coffee
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -15,4 +17,9 @@ public class FriendManager : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    private void OnMouseDown()
+    {
+        friendEngagments++;
+    }
 }
