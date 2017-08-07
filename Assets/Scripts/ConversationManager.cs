@@ -7,7 +7,7 @@ public class ConversationManager : MonoBehaviour {
 
     //shared
     float convoCeasedTime; //the time the most recent conversation stops
-    bool havingConvo = false; //whether or not a conversation is happening
+    public bool havingConvo = false; //whether or not a conversation is happening
     float conversationChance = 9f; //chance of starting a conversation compared to complimenting them out of ten
     float rollTalking; //a random number that is 'rolled' to determine a conversation chance
     bool deepConvoAvail = false; //whether or not the player can discuss certain topics.  Unlocked after a period of time
@@ -106,6 +106,7 @@ public class ConversationManager : MonoBehaviour {
         if (friendEligible == true)
         {
             RollChance();
+            havingConvo = true;
         }
     }
 

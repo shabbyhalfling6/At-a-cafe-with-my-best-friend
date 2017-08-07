@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class JournalManager : MonoBehaviour {
 
+    public GameObject manager; //this is where convomanger is held.  when click on journal it'll check against the havingConvo bool and if the friends are having a convo it won't open the journal
+
     public GameObject journalTextObject;
     public InputField journalInputField;
 
@@ -44,9 +46,12 @@ public class JournalManager : MonoBehaviour {
 
     void OnMouseDown()
     {
-        journalInputField.ActivateInputField();
-        journalTextObject.SetActive(true);
-        journalOpened++;
+        if (manager.GetComponent<ConversationManager>().havingConvo == false)
+        {
+            journalInputField.ActivateInputField();
+            journalTextObject.SetActive(true);
+            journalOpened++;
+        }
     }
 
 }

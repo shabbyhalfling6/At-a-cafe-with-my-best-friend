@@ -1,24 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Fungus;
 
 public class ExitManager : MonoBehaviour {
 
+    public GameObject manager; //the object the conversationmanager script is attached to
+    public Flowchart conversationFlowchart;
 
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     void OnMouseDown()
     {
-        //check if convo is happening
-        //if not execute fungus
+        if (manager.GetComponent<ConversationManager>().havingConvo == false)
+        {
+            conversationFlowchart.ExecuteBlock("Exit?");
+        }
     }
 }
