@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Analytics;
 
 public class JournalManager : MonoBehaviour {
 
     public GameObject journalTextObject;
     public InputField journalInputField;
+
+    public int journalOpened;
 
 	// Use this for initialization
 	void Start ()
@@ -44,5 +47,14 @@ public class JournalManager : MonoBehaviour {
     {
         journalInputField.ActivateInputField();
         journalTextObject.SetActive(true);
+        journalOpened++;
+    }
+
+    private void OnApplicationQuit()
+    {
+        Analytics.CustomEvent("journalOpened", new Dictionary<string, object>
+        {
+            { "journalUsed",  journalOpened }
+         });
     }
 }
