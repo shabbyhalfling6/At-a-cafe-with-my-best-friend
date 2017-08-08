@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class JournalManager : MonoBehaviour {
 
     public GameObject manager; //this is where convomanger is held.  when click on journal it'll check against the havingConvo bool and if the friends are having a convo it won't open the journal
+    private GameObject cameraMain; //this is the camera that the followmouse script is held on.  I'll need to access it
 
     public GameObject journalTextObject;
     public InputField journalInputField;
@@ -15,6 +16,7 @@ public class JournalManager : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
+        cameraMain = GameObject.FindGameObjectWithTag("MainCamera");
 	}
 	
 	// Update is called once per frame
@@ -40,6 +42,7 @@ public class JournalManager : MonoBehaviour {
         if (Input.GetKey(KeyCode.Escape))
         {
             journalTextObject.SetActive(false);
+            cameraMain.GetComponent<MouseLook>().FreeView();
         }
 
     }
@@ -48,6 +51,7 @@ public class JournalManager : MonoBehaviour {
     {
         if (manager.GetComponent<ConversationManager>().havingConvo == false)
         {
+            cameraMain.GetComponent<MouseLook>().LookTarget(gameObject, 5f);
             journalInputField.ActivateInputField();
             journalTextObject.SetActive(true);
             journalOpened++;
