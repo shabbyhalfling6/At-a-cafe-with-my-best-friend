@@ -103,7 +103,7 @@ public class ConversationManager : MonoBehaviour {
 
     public void ClickOnFriend()
     {
-        if (friendEligible == true)
+        if (friendEligible == true && havingConvo == false)
         {
             RollChance();
             havingConvo = true;

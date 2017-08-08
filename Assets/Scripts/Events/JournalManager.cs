@@ -42,6 +42,7 @@ public class JournalManager : MonoBehaviour {
         if (Input.GetKey(KeyCode.Escape))
         {
             journalTextObject.SetActive(false);
+            manager.GetComponent<ConversationManager>().havingConvo = false;
             cameraMain.GetComponent<MouseLook>().FreeView();
         }
 
@@ -51,6 +52,7 @@ public class JournalManager : MonoBehaviour {
     {
         if (manager.GetComponent<ConversationManager>().havingConvo == false)
         {
+            manager.GetComponent<ConversationManager>().havingConvo = true;
             cameraMain.GetComponent<MouseLook>().LookTarget(gameObject, 5f);
             journalInputField.ActivateInputField();
             journalTextObject.SetActive(true);
