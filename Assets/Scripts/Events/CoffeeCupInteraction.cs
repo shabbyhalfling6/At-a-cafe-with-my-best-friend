@@ -15,11 +15,8 @@ public class CoffeeCupInteraction : MonoBehaviour {
 
     void OnMouseDown()
     {
-        //take a sip from the drink
-        clicksBeforeEmpty--;
-
         //if the cup is empty
-        if(clicksBeforeEmpty == 0)
+        if(clicksBeforeEmpty <= 0)
         {
             //execute the player served event in fungus so the barista will serve the player
             eventFlowchart.ExecuteBlock("PlayerServed");
@@ -27,6 +24,8 @@ public class CoffeeCupInteraction : MonoBehaviour {
         }
         else
         {
+            //take a sip from the drink
+            clicksBeforeEmpty--;
             //change the sprite to the current level of sip (only coffee atm)
             this.GetComponent<SpriteRenderer>().sprite = coffeeCupSprites[clicksBeforeEmpty];
         }
