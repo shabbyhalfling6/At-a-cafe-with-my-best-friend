@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaristaManager : MonoBehaviour {
+public class BaristaManager : MonoBehaviour
+{
 
     //barista stands at counter
     //barista walks to tables - people run out of coffee
@@ -22,15 +23,15 @@ public class BaristaManager : MonoBehaviour {
 
     private bool servePlayer = false;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start()
     {
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         timer = timerIn;
-	}
-	
-	// Update is called once per frame
-	void Update ()
+    }
+
+    // Update is called once per frame
+    void Update()
     {
         timer -= Time.deltaTime;
 
@@ -39,7 +40,7 @@ public class BaristaManager : MonoBehaviour {
             MoveRandTable();
             timer = timerIn;
         }
-	}
+    }
 
     void MoveRandTable()
     {
@@ -52,4 +53,15 @@ public class BaristaManager : MonoBehaviour {
         agent.SetDestination(playerTable.position);
         servePlayer = true;
     }
+
+    public void DeliverCoffee()
+    {
+
+    }
+
+    public void ServeRandoms()
+    {
+        servePlayer = false;
+    }
 }
+

@@ -4,27 +4,26 @@ using UnityEngine;
 
 public class MagicCat : MonoBehaviour {
 
-    public GameObject cameraMain;
-
     public float counter;
-    float catAppears;
-    float catDisappears;
+    public float catAppears;
+    public float catDisappears;
     public float chilling;
 
     bool catHere = false;
+    bool catVisible = false;
 
     float firstMin = 2f;
     float secondMin = 9f;
     float firstMax = 9f;
     float secondMax = 30f;
 
-    float cameraMin = -235f;
-    float cameraMax = -135f;
+    float cameraMin = -250f;
+    float cameraMax = -115f;
 
-    bool cameraAllG = false;
+    public Sprite catSprite;
 
-    Vector3 hiddenCat = new Vector3(22.82f, 4.167f, 20.97f);
-    Vector3 visibleCat = new Vector3(22.82f, 6.144f, 17.54f);
+    //Vector3 hiddenCat = new Vector3(22.82f, 4.167f, 20.97f);
+   // Vector3 visibleCat = new Vector3(22.82f, 6.144f, 17.54f);
 
 	// Use this for initialization
 	void Start () {
@@ -36,29 +35,50 @@ public class MagicCat : MonoBehaviour {
         counter += Time.deltaTime;
         chilling += Time.deltaTime;
         
-        if (counter >= catAppears && cameraMain.transform.rotation.y >= cameraMin && cameraMain.transform.rotation.y <= cameraMax && catHere == false) //between -250 & -115
+        /*
+        if (Camera.main.transform.rotation.y <= cameraMin) //&& Camera.main.transform.rotation.y == cameraMax) //between -250 & -115
         {
-            transform.position = visibleCat;
-            catDisappears = Random.Range(secondMin, secondMax);
+            Debug.Log("visibleCat");
+        }
+
+        if (Camera.main.transform.rotation.y >= cameraMin) //&& Camera.main.transform.rotation.y <= cameraMax && catHere == true)
+        {
+            Debug.Log("notVisibleCat");
+        }
+        */
+
+        if (counter >= catAppears && !catHere)
+        {
+            if (!catVisible)
+            {
+                //transform.position = visibleCat;
+                this.GetComponent<SpriteRenderer>().sprite = catSprite;
+                catDisappears = Random.Range(secondMin, secondMax);
+                catHere = true;
+            }
             chilling = 0f;
-            catHere = true;
         }
         
-        if(chilling >= catDisappears && cameraMain.transform.rotation.y >= cameraMin && cameraMain.transform.rotation.y <= cameraMax && catHere == true)
+        if(chilling >= catDisappears && catHere)
         {
-            transform.position = hiddenCat;
-            catAppears = Random.Range(secondMin, secondMax);
+            if (!catVisible)
+            {
+                //transform.position = hiddenCat;
+                this.GetComponent<SpriteRenderer>().sprite = null;
+                catAppears = Random.Range(secondMin, secondMax);
+                catHere = false;
+            }
             counter = 0f;
-            catHere = false;
         }
-        /*
-        if(cameraMain.transform.rotation.y >= cameraMin && cameraMain.transform.rotation.y <= cameraMax)
-        {
-            cameraAllG = true;
-        }
-        else
-        {
-            cameraAllG = false;
-        }*/
 	}
+
+    private void OnBecameVisible()
+    {
+        catVisible = true;
+    }
+
+    private void OnBecameInvisible()
+    {
+        catVisible = false;
+    }
 }
