@@ -6,10 +6,10 @@ public class MagicCat : MonoBehaviour {
 
     public GameObject cameraMain;
 
-    float counter;
+    public float counter;
     float catAppears;
     float catDisappears;
-    float chilling;
+    public float chilling;
 
     bool catHere = false;
 
@@ -18,15 +18,16 @@ public class MagicCat : MonoBehaviour {
     float firstMax = 9f;
     float secondMax = 30f;
 
-    float cameraMin = -250f;
-    float cameraMax = -115f;
+    float cameraMin = -235f;
+    float cameraMax = -135f;
 
     bool cameraAllG = false;
 
+    Vector3 hiddenCat = new Vector3(22.82f, 4.167f, 20.97f);
+    Vector3 visibleCat = new Vector3(22.82f, 6.144f, 17.54f);
+
 	// Use this for initialization
 	void Start () {
-        gameObject.SetActive(false);
-        //gameObject.renderer
         catAppears = Random.Range(firstMin, firstMax);
 	}
 	
@@ -35,29 +36,29 @@ public class MagicCat : MonoBehaviour {
         counter += Time.deltaTime;
         chilling += Time.deltaTime;
         
-        if (counter >= catAppears && cameraAllG == true && catHere == false) //between -250 & -115
+        if (counter >= catAppears && cameraMain.transform.rotation.y >= cameraMin && cameraMain.transform.rotation.y <= cameraMax && catHere == false) //between -250 & -115
         {
-            gameObject.SetActive(true);
+            transform.position = visibleCat;
             catDisappears = Random.Range(secondMin, secondMax);
             chilling = 0f;
             catHere = true;
         }
         
-        if(chilling >= catDisappears && cameraAllG == true && catHere == true)
+        if(chilling >= catDisappears && cameraMain.transform.rotation.y >= cameraMin && cameraMain.transform.rotation.y <= cameraMax && catHere == true)
         {
-            gameObject.SetActive(false);
+            transform.position = hiddenCat;
             catAppears = Random.Range(secondMin, secondMax);
             counter = 0f;
             catHere = false;
         }
-
-        if(cameraMain.transform.position.y > cameraMin && cameraMain.transform.position.y < cameraMax)
+        /*
+        if(cameraMain.transform.rotation.y >= cameraMin && cameraMain.transform.rotation.y <= cameraMax)
         {
             cameraAllG = true;
         }
         else
         {
             cameraAllG = false;
-        }
+        }*/
 	}
 }
