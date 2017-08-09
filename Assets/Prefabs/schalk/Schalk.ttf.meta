@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: ba81f8b9c7a977244b0dcbab1d1b2036
+timeCreated: 1502239011
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: schalk
+  fontNames:
+  - schalk
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
