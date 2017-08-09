@@ -42,6 +42,7 @@ public class ConversationManager : MonoBehaviour {
         conversationBlockNames.Add("Mean Girls");
         conversationBlockNames.Add("Pain");
         conversationBlockNames.Add("Knifey");
+        conversationBlockNames.Add("Music");
 
         //fungus compliments
         complimentBlockNames.Add("Linda Evangelista");
