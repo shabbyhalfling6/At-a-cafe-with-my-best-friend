@@ -10,7 +10,7 @@ public class MagicCat : MonoBehaviour {
     public float chilling;
 
     bool catHere = false;
-    bool catVisible = false;
+    public bool catVisible = false;
 
     float firstMin = 2f;
     float secondMin = 9f;
@@ -22,9 +22,6 @@ public class MagicCat : MonoBehaviour {
 
     public Sprite catSprite;
 
-    //Vector3 hiddenCat = new Vector3(22.82f, 4.167f, 20.97f);
-   // Vector3 visibleCat = new Vector3(22.82f, 6.144f, 17.54f);
-
 	// Use this for initialization
 	void Start () {
         catAppears = Random.Range(firstMin, firstMax);
@@ -34,41 +31,31 @@ public class MagicCat : MonoBehaviour {
 	void Update () {
         counter += Time.deltaTime;
         chilling += Time.deltaTime;
-        
-        /*
-        if (Camera.main.transform.rotation.y <= cameraMin) //&& Camera.main.transform.rotation.y == cameraMax) //between -250 & -115
-        {
-            Debug.Log("visibleCat");
-        }
-
-        if (Camera.main.transform.rotation.y >= cameraMin) //&& Camera.main.transform.rotation.y <= cameraMax && catHere == true)
-        {
-            Debug.Log("notVisibleCat");
-        }
-        */
 
         if (counter >= catAppears && !catHere)
         {
             if (!catVisible)
             {
-                //transform.position = visibleCat;
                 this.GetComponent<SpriteRenderer>().sprite = catSprite;
                 catDisappears = Random.Range(secondMin, secondMax);
                 catHere = true;
+                chilling = 0f;
             }
-            chilling = 0f;
+            else
+                counter = 0f;
         }
         
         if(chilling >= catDisappears && catHere)
         {
             if (!catVisible)
             {
-                //transform.position = hiddenCat;
                 this.GetComponent<SpriteRenderer>().sprite = null;
                 catAppears = Random.Range(secondMin, secondMax);
                 catHere = false;
+                counter = 0f;
             }
-            counter = 0f;
+            else
+                chilling = 0f;
         }
 	}
 
