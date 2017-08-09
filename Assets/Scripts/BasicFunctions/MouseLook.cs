@@ -40,7 +40,7 @@ public class MouseLook : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I) && Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyCode.Keypad8))
         {
             if (invertY)
                 invertY = false;
