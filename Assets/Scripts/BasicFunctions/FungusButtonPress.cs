@@ -11,7 +11,7 @@ public class FungusButtonPress : MonoBehaviour {
     	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(keycode))
+        if (Input.GetKeyDown(keycode)) //trial && camera facing x or x is visible
         {
             ExecuteEvents.Execute<IPointerClickHandler>(gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerClickHandler);
         }
