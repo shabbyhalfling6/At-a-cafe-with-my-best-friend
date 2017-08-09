@@ -20,8 +20,9 @@ using System.Collections;
 [AddComponentMenu("Camera-Control/Mouse Look")]
 public class MouseLook : MonoBehaviour
 {
+    public bool invertY = false;
 
-     public enum RotationAxes { MouseXAndY = 0, MouseX = 1, MouseY = 2 }
+    public enum RotationAxes { MouseXAndY = 0, MouseX = 1, MouseY = 2 }
      public RotationAxes axes = RotationAxes.MouseXAndY;
      public float sensitivityX = 15F;
      public float sensitivityY = 15F;
@@ -39,6 +40,14 @@ public class MouseLook : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.I) && Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            if (invertY)
+                invertY = false;
+            else
+                invertY = true;
+        }
+
         if (lookTarget)
         {
             Cursor.lockState = CursorLockMode.None;
@@ -60,7 +69,7 @@ public class MouseLook : MonoBehaviour
                 Quaternion xQuaternion = Quaternion.AngleAxis(rotationX, Vector3.up);
                 Quaternion yQuaternion = Quaternion.AngleAxis(rotationY, -Vector3.right);
                 //y invert
-                if (UIManager.Instance.invertY)
+                if (invertY)
                     yQuaternion = Quaternion.Inverse(yQuaternion);
                 transform.localRotation = originalRotation * xQuaternion * yQuaternion;
             }
@@ -77,7 +86,7 @@ public class MouseLook : MonoBehaviour
                 rotationY = ClampAngle(rotationY, minimumY, maximumY);
                 Quaternion yQuaternion = Quaternion.AngleAxis(-rotationY, Vector3.right);
                 //y invert
-                if (UIManager.Instance.invertY)
+                if (invertY)
                     yQuaternion = Quaternion.Inverse(yQuaternion);
                 transform.localRotation = originalRotation * yQuaternion;
             }
