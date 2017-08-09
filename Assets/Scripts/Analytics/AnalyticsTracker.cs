@@ -24,7 +24,7 @@ public class AnalyticsTracker : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        Analytics.CustomEvent("gameOver", new Dictionary<string, object>
+        Analytics.CustomEvent("gameOverPlaytest", new Dictionary<string, object>
         {
 
             { "FriendCliked",  friendclicks.friendEngagments },
