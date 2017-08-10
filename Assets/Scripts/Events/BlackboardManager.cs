@@ -5,7 +5,15 @@ using UnityEngine.UI;
 
 public class BlackboardManager : MonoBehaviour {
 
-    private string[] puns = { "Our thickshakes are dairy good <3", "Maybe she's born with it, maybe it's caffeine", "It's a brew-tiful day!", "Iced coffee?? Cool beans!", "Livin' la vida mocha", "I like big cups and I cannot lie", "Have a cup of positivi-tea!" };
+    private string[] puns = {
+        "Our thickshakes are dairy good <3",
+        "Maybe she's born with it, maybe it's caffeine",
+        "It's a brew-tiful day!",
+        "Iced coffee?? Cool beans!",
+        "Livin' la vida mocha",
+        "I like big cups and I cannot lie",
+        "Have a cup of positivi-tea!"
+    };
     private string currentPun;
     public Text textbox;
 
@@ -15,8 +23,8 @@ public class BlackboardManager : MonoBehaviour {
         textbox.text = puns[i];
         currentPun = puns[i];
     }
-
-    public void NewBlackboard()
+    
+    private void OnMouseDown()
     {
         int i = Random.Range(0, puns.Length);
         while (puns[i] == currentPun)
