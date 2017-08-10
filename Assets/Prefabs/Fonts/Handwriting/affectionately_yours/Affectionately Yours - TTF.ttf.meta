@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: e7f0949c2c3faad43a36b8dfb9788d4b
+timeCreated: 1502337710
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Affectionately Yours
+  fontNames:
+  - Affectionately Yours
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: b9c2d58ac6a33f74aa7b5448864d0ef5, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

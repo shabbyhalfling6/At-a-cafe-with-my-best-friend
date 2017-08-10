@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 827528298d4dc1f4c8be934edf001faf
+timeCreated: 1502337710
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Lemon Tuesday
+  fontNames:
+  - Lemon Tuesday
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -14,6 +14,9 @@ public class PomoRunner : MonoBehaviour {
 
     public Flowchart relevantFlowchart;
 
+    //public float minutesLeft;
+    public string newMin = "this is it";
+
     // Use this for initialization
     void Start () {
 		
@@ -44,5 +47,10 @@ public class PomoRunner : MonoBehaviour {
     {
         timerRunning = false;
         counter = 0f;
+    }
+
+    public void CalculateTimeLeft()
+    {
+        //relevantFlowchart.SetStringVariable()
     }
 }
