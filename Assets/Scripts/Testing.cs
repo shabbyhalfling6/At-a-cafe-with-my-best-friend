@@ -24,4 +24,9 @@ public class Testing : MonoBehaviour {
             
         }
 	}
+
+    void StartTimer()
+    {
+
+    }
 }

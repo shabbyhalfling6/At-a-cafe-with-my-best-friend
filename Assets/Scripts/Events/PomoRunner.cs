@@ -26,21 +26,21 @@ public class PomoRunner : MonoBehaviour {
             counter += Time.deltaTime;
             if(timeToCheck <= counter)
             {
-                //execute block times up
+                relevantFlowchart.ExecuteBlock("Time's Up");
                 timerRunning = false;
                 counter = 0;
             }
         }
 	}
 
-    void RunTimer(float timer)
+    public void RunTimer(float timer)
     {
         //counter += Time.deltaTime;
         timerRunning = true;
         timeToCheck = timer;
     }
 
-    void CancelTimer()
+    public void CancelTimer()
     {
         timerRunning = false;
         counter = 0f;
