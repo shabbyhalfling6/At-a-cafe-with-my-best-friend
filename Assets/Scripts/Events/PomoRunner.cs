@@ -8,28 +8,23 @@ public class PomoRunner : MonoBehaviour {
     float twentyfiveMins = 1500f;
     float thirteenMins = 780f;
     float sevenMins = 420f;
-    float counter;
-    bool timerRunning = false;
-    float timeToCheck;
+    float counter; //counts up when timerRunning 
+    bool timerRunning = false; //set to true when starts
+    float timeToCheck; //adjusted when call RunTimer
 
     public Flowchart relevantFlowchart;
 
     //public float minutesLeft;
-    public string calcdTimeLeft = "this is it";
-
-    // Use this for initialization
-    void Start () {
-		
-	}
+    public string calcdTimeLeft = "this is it"; //the string that goes into fungus
 	
 	// Update is called once per frame
 	void Update () {
         if (timerRunning)
         {
-            counter += Time.deltaTime;
+            counter += Time.deltaTime; //counting up
             if(timeToCheck <= counter)
             {
-                relevantFlowchart.ExecuteBlock("Time's Up");
+                relevantFlowchart.ExecuteBlock("Time's Up"); //execute time's up
                 timerRunning = false;
                 counter = 0;
             }
@@ -38,7 +33,6 @@ public class PomoRunner : MonoBehaviour {
 
     public void RunTimer(float timer)
     {
-        //counter += Time.deltaTime;
         timerRunning = true;
         timeToCheck = timer;
     }
@@ -49,9 +43,9 @@ public class PomoRunner : MonoBehaviour {
         counter = 0f;
     }
 
-    public void CalculateTimeLeft(float total)
+    public void CalculateTimeLeft()
     {
-        float timeLeft = total - (counter / 60);
+        float timeLeft = timeToCheck - (counter / 60);
         int intTimeLeft = (int)timeLeft;
         calcdTimeLeft = intTimeLeft.ToString();
 
