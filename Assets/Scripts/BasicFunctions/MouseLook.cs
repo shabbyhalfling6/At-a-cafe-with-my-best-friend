@@ -51,13 +51,11 @@ public class MouseLook : MonoBehaviour
         if (lookTarget)
         {
             Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
             this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(target.transform.position - this.transform.position), rotationSpeed * Time.deltaTime);
         }
         else
         {
             Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
 
             if (axes == RotationAxes.MouseXAndY)
             {
