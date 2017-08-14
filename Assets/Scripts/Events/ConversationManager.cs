@@ -10,8 +10,6 @@ public class ConversationManager : MonoBehaviour {
     public bool havingConvo = false; //whether or not a conversation is happening
     float conversationChance = 9f; //chance of starting a conversation compared to complimenting them out of ten
     float rollTalking; //a random number that is 'rolled' to determine a conversation chance
-    bool deepConvoAvail = false; //whether or not the player can discuss certain topics.  Unlocked after a period of time
-    float timeTilDeepAvail = 120f; // the amount of time until deeper conversation topics are unlocked
     float minNextTime = 15f; // min time until the next random conversation is triggered
     float maxNextTime = 45f; //max time til the next conversation is triggered
 
@@ -23,18 +21,14 @@ public class ConversationManager : MonoBehaviour {
 
     //fungus
     public Flowchart conversationFlowchart; //the flowchart for conversations
-    public Flowchart complimentFlowchart; //the flowchart for compliments
     public List<string> conversationBlockNames; //put down the individual block names for convos
-    public List<string> complimentBlockNames; //put down the individual block names for compliments
 
     // Use this for initialization
     void Start () {
         //for friend
         convoCeasedTime = Time.time; //start the ceased time as time game starts
         nextConvoStart = convoCeasedTime + Random.Range(minNextTime, maxNextTime); //set the time the friend starts talking to you - should be 15-60
-
-        //for you
-
+        
         //fungus conversations
         conversationBlockNames.Add("Food Mishaps");
         conversationBlockNames.Add("Tinder");
@@ -44,12 +38,12 @@ public class ConversationManager : MonoBehaviour {
         conversationBlockNames.Add("Knifey");
         conversationBlockNames.Add("Music");
 
-        //fungus compliments
-        complimentBlockNames.Add("Linda Evangelista");
-        complimentBlockNames.Add("You're beautiful");
-        complimentBlockNames.Add("I love you");
-        complimentBlockNames.Add("You look great today");
-        complimentBlockNames.Add("Better Person");
+        //fungus compliments - NEED TO ADD TO FLOWCHART AND CHECK FLOWCHART
+        conversationBlockNames.Add("Linda Evangelista");
+        conversationBlockNames.Add("You're beautiful");
+        conversationBlockNames.Add("I love you");
+        conversationBlockNames.Add("You look great today");
+        conversationBlockNames.Add("Better Person");
     }
 	
 	// Update is called once per frame
@@ -57,28 +51,12 @@ public class ConversationManager : MonoBehaviour {
 		if(nextConvoStart <= Time.time && !havingConvo && friendEligible)
         {
             havingConvo = true;
-            RollChance();
+            CallConvoBlock();
         }
 	}
 
-    void RollChance()
-    {
-        //don't roll if compliments list is null
-        rollTalking = Random.Range(1, 10);  //determine whether a conversation or compliment will be triggered
-        if(rollTalking <= conversationChance)
-        {
-            CallConvoBlock();
-        }
-        else
-        {
-            CallCompliment();
-        }
-    }
-
     void CallConvoBlock()
     {
-        //call the convo block in fungus
-        //roll for random block
         friendEligible = false;
         int index = Random.Range(0, conversationBlockNames.Count);
         conversationFlowchart.ExecuteBlock(conversationBlockNames[index]);
@@ -98,7 +76,7 @@ public class ConversationManager : MonoBehaviour {
         friendEligible = true;
     }
 
-    public void HavingConvoTrue()
+    public void HavingConvoTrue() //to call inside fungus
     {
         havingConvo = true;
     }
@@ -107,33 +85,8 @@ public class ConversationManager : MonoBehaviour {
     {
         if (friendEligible == true && havingConvo == false)
         {
-            RollChance();
+            CallConvoBlock();
             havingConvo = true;
         }
-    }
-
-    void CallCompliment()
-    {
-        //call a compliment block in unity
-        //roll for random block
-        friendEligible = false;
-        int index = Random.Range(0, complimentBlockNames.Count);
-        complimentFlowchart.ExecuteBlock(conversationBlockNames[index]);
-        complimentBlockNames.RemoveAt(index);
-    }
-
-    void DeepAvail()
-    {
-        if(timeTilDeepAvail >= Time.time)
-        {
-            AddDeepConvos();
-            //trigger certain topics becoming available
-        }
-    }
-
-    void AddDeepConvos()
-    {
-        //add the deep convos to the array
-        conversationBlockNames.Add("deeper");
     }
 }
