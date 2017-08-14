@@ -9,7 +9,6 @@ public class JournalManager : MonoBehaviour {
     private GameObject cameraMain; //this is the camera that the followmouse script is held on.  I'll need to access it
 
     public GameObject[] journalTextObject;
-    //public InputField journalInputField;
 
     //analytic for times the journal was opened
     public int journalOpened = 0;

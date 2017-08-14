@@ -5,11 +5,19 @@ using UnityEngine;
 public class BaristaManager : MonoBehaviour
 {
 
-    //barista stands at counter
-    //barista walks to tables - people run out of coffee
+    public enum baristaStates
+    {
+        Idle,   // serve random tables
+        ServePlayer,    //serve player and takes thier order
+        DeliverPlayerDrink  //delivers the players order
+    }
 
-    //barista makes coffees
-    //barista comes to you
+    public enum baristaAction
+    {
+        MoveCounter,
+        MakeCoffee,
+        MoveTable,
+    }
 
     //variables
     public Transform behindCounter;
@@ -18,10 +26,13 @@ public class BaristaManager : MonoBehaviour
 
     private UnityEngine.AI.NavMeshAgent agent;
 
-    private float timer = 0.0f;
+    public float timer = 0.0f;
     public float timerIn = 10.0f;
 
-    private bool servePlayer = false;
+    public baristaStates currentState = baristaStates.Idle;
+    public baristaAction currentAction = baristaAction.MoveCounter;
+
+    int randTable = 0;
 
     // Use this for initialization
     void Start()
@@ -35,33 +46,95 @@ public class BaristaManager : MonoBehaviour
     {
         timer -= Time.deltaTime;
 
-        if (timer <= 0.0f && !servePlayer)
+        //switch over the states and do that behaviour
+        switch (currentState)
         {
-            MoveRandTable();
-            timer = timerIn;
+            case baristaStates.Idle:
+                {
+                    //call behaviour that handles delivering and making of coffee and feed it the baristas target table to serve
+                    Serving(tables[randTable].position);
+                    break;
+                }
+            case baristaStates.ServePlayer:
+                {
+                    break;
+                }
+            case baristaStates.DeliverPlayerDrink:
+                {
+                    //call behaviour that handles delivering and making of coffee and feed it the baristas target table to serve
+                    Serving(playerTable.position);
+                    break;
+                }
+        }
+
+    }
+
+    void Serving(Vector3 target)
+    {
+        switch (currentAction)
+        {
+            case baristaAction.MoveCounter:
+                {
+                    //////////////////// moving to the counter to grab a coffee //////////////////
+                    //check if the destination is reached
+                    if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+                    {
+                        if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                        {
+                            timer = timerIn;
+                            currentAction = baristaAction.MakeCoffee;
+                        }
+                    }
+                    break;
+                }
+            case baristaAction.MakeCoffee:
+                {
+                    /////////////////// stand at counter until the drink is made ////////////////
+                    //if the barista has stood at the counter long enough
+                    if (timer <= 0.0f)
+                    {
+                        agent.SetDestination(target);
+                        currentAction = baristaAction.MoveTable;
+                    }
+                    break;
+                }
+            case baristaAction.MoveTable:
+                {
+                    ////////////////// deliver drink to the customer ///////////////////
+                    //check if the destination is reached
+                    if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+                    {
+                        if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                        {
+                            //go back to serving other customers
+                            ServeRandoms();
+                            currentAction = baristaAction.MoveCounter;
+                        }
+                    }
+                    break;
+                }
         }
     }
 
-    void MoveRandTable()
-    {
-        int randNum = Random.Range(0, tables.Length);
-        agent.SetDestination(tables[randNum].position);
-    }
-
+    //functions called through fungus to change barista state
     public void ServePlayer()
     {
+        currentState = baristaStates.ServePlayer;
         agent.SetDestination(playerTable.position);
-        servePlayer = true;
     }
-
     public void DeliverCoffee()
     {
-
+        currentState = baristaStates.DeliverPlayerDrink;
+        currentAction = baristaAction.MoveCounter;
+        agent.SetDestination(behindCounter.position);
     }
 
     public void ServeRandoms()
     {
-        servePlayer = false;
+        currentState = baristaStates.Idle;
+        currentAction = baristaAction.MoveCounter;
+        timer = timerIn;
+        randTable = Random.Range(0, tables.Length);
     }
 }
 
