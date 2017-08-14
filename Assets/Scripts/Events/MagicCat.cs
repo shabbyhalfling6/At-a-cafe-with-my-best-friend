@@ -17,9 +17,6 @@ public class MagicCat : MonoBehaviour {
     float firstMax = 9f;
     float secondMax = 30f;
 
-    float cameraMin = -250f;
-    float cameraMax = -115f;
-
     public Sprite catSprite;
 
 	// Use this for initialization
