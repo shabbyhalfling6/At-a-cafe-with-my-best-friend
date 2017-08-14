@@ -49,6 +49,6 @@ public class PomoRunner : MonoBehaviour {
         int intTimeLeft = (int)timeLeft;
         calcdTimeLeft = intTimeLeft.ToString();
 
-        relevantFlowchart.SetStringVariable("minutesLeft", calcdTimeLeft);
+        relevantFlowchart.SetStringVariable("minutesLeft", "100");
     }
 }
