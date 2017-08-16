@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Fungus;
 
 public class PomoRunner : MonoBehaviour {
@@ -16,9 +17,9 @@ public class PomoRunner : MonoBehaviour {
 
     //public float minutesLeft;
     string calcdTimeLeft = "this is it"; //the string that goes into fungus
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
         if (timerRunning)
         {
             counter += Time.deltaTime; //counting up
@@ -29,7 +30,7 @@ public class PomoRunner : MonoBehaviour {
                 counter = 0;
             }
         }
-	}
+    }
 
     public void RunTimer(float timer)
     {
