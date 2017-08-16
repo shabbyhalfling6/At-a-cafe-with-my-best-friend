@@ -15,7 +15,7 @@ public class PomoRunner : MonoBehaviour {
     public Flowchart relevantFlowchart;
 
     //public float minutesLeft;
-    public string calcdTimeLeft = "this is it"; //the string that goes into fungus
+    string calcdTimeLeft = "this is it"; //the string that goes into fungus
 	
 	// Update is called once per frame
 	void Update () {
@@ -45,10 +45,10 @@ public class PomoRunner : MonoBehaviour {
 
     public void CalculateTimeLeft()
     {
-        float timeLeft = timeToCheck - (counter / 60);
-        int intTimeLeft = (int)timeLeft;
+        float timeLeft = (timeToCheck - counter) / 60;
+        int intTimeLeft = ((int)timeLeft) + 1;
         calcdTimeLeft = intTimeLeft.ToString();
 
-        relevantFlowchart.SetStringVariable("minutesLeft", "100");
+        relevantFlowchart.SetStringVariable("minutesLeft", calcdTimeLeft);
     }
 }
