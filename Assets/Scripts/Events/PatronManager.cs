@@ -7,14 +7,22 @@ public class PatronManager : MonoBehaviour {
     //patron sits in seat
     //occasionally sips coffee
 
-    bool sippingCoffee = false;
+    float minTime = 15;
+    float maxTime = 30;
+
     float timeSinceSip; //the time the most recent sip
     float timeToSip;
+
+    public Sprite sipping;
+    Sprite notSipping;
+    bool sippingCoffee = false;
 
     // Use this for initialization
     void Start () {
         timeSinceSip = Time.time;
-        timeToSip = timeSinceSip + Random.Range(30, 120);
+        timeToSip = timeSinceSip + Random.Range(minTime, maxTime);
+
+        notSipping = gameObject.GetComponent<SpriteRenderer>().sprite;
 	}
 	
 	// Update is called once per frame
@@ -22,13 +30,18 @@ public class PatronManager : MonoBehaviour {
 		if(timeToSip <= Time.time && !sippingCoffee)
         {
             sippingCoffee = true;
-            SipCoffee();
+            StartCoroutine(SipCoffee());
         }
 	}
 
-    void SipCoffee()
+    IEnumerator SipCoffee()
     {
         //trigger sip animation
+        gameObject.GetComponent<SpriteRenderer>().sprite = sipping;
+        yield return new WaitForSeconds(3);
+        gameObject.GetComponent<SpriteRenderer>().sprite = notSipping;
+        timeSinceSip = Time.time;
+        timeToSip = timeSinceSip + Random.Range(minTime, maxTime);
         sippingCoffee = false;
     }
 }
