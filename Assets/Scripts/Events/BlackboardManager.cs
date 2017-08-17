@@ -12,7 +12,8 @@ public class BlackboardManager : MonoBehaviour {
         "Iced coffee?? Cool beans!",
         "Livin' la vida mocha",
         "I like big cups and I cannot lie",
-        "Have a cup of positivi-tea!"
+        "Have a cup of positivi-tea!",
+        "Pour choices flow from a lack of coffee"
     };
     private string currentPun;
     public Text textbox;
