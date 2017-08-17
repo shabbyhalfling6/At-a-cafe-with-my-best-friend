@@ -13,7 +13,7 @@ public class BubbleIcon : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(manager.havingConvo == true)
+		if(manager.havingConvo == true && manager.pomoRunning == false)
         {
             gameObject.GetComponent<Renderer>().enabled = true;
         }

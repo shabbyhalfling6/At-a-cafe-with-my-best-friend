@@ -23,6 +23,9 @@ public class ConversationManager : MonoBehaviour {
     public Flowchart conversationFlowchart; //the flowchart for conversations
     public List<string> conversationBlockNames; //put down the individual block names for convos
 
+    //for the pomo feature
+    public bool pomoRunning = false;
+
     // Use this for initialization
     void Start () {
         //for friend
@@ -39,16 +42,16 @@ public class ConversationManager : MonoBehaviour {
         conversationBlockNames.Add("Music");
 
         //fungus compliments - NEED TO ADD TO FLOWCHART AND CHECK FLOWCHART
-        conversationBlockNames.Add("Linda Evangelista");
+        /*conversationBlockNames.Add("Linda Evangelista");
         conversationBlockNames.Add("You're beautiful");
         conversationBlockNames.Add("I love you");
         conversationBlockNames.Add("You look great today");
-        conversationBlockNames.Add("Better Person");
+        conversationBlockNames.Add("Better Person");*/
     }
 	
 	// Update is called once per frame
 	void Update () {
-		if(nextConvoStart <= Time.time && !havingConvo && friendEligible)
+		if(nextConvoStart <= Time.time && !havingConvo && friendEligible && !pomoRunning)
         {
             havingConvo = true;
             CallConvoBlock();
@@ -88,5 +91,14 @@ public class ConversationManager : MonoBehaviour {
             CallConvoBlock();
             havingConvo = true;
         }
+    }
+
+    public void SetPomoRunTrue()
+    {
+        pomoRunning = true;
+    }
+    public void SetPomoRunFalse()
+    {
+        pomoRunning = false;
     }
 }

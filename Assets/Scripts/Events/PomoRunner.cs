@@ -6,19 +6,23 @@ using Fungus;
 
 public class PomoRunner : MonoBehaviour {
 
-    float twentyfiveMins = 1500f;
-    float thirteenMins = 780f;
-    float sevenMins = 420f;
     float counter; //counts up when timerRunning 
     bool timerRunning = false; //set to true when starts
     float timeToCheck; //adjusted when call RunTimer
 
     public Flowchart relevantFlowchart;
 
+    private ConversationManager manager; //the object the conversationmanager script is attached to
+
     //public float minutesLeft;
     string calcdTimeLeft = "this is it"; //the string that goes into fungus
 
-    // Update is called once per frame
+    void Start()
+    {
+        manager = GameObject.FindGameObjectWithTag("Manager").GetComponent<ConversationManager>();
+    }
+
+        // Update is called once per frame
     void Update () {
         if (timerRunning)
         {

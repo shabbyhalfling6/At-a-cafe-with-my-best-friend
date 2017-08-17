@@ -17,6 +17,7 @@ public class ClickableObject : MonoBehaviour {
 
     //if the object is a coffee cup check this in the inspector
     public bool isCoffeeCup = false;
+    public bool isPomo = false;
 
     //coffee cup sprites (probably should do this somewhere else)
     public Sprite[] coffeeCupSprites;
@@ -40,9 +41,14 @@ public class ClickableObject : MonoBehaviour {
         }
 
         //if not having a convo, there is a block in fungus to run and you have clicked it enough
-        if (manager.havingConvo == false && manager != null && clicksBeforeExecute == 0)
+        if (manager.havingConvo == false && manager != null && clicksBeforeExecute == 0 && manager.pomoRunning == false)
         {
             //run block in fungus
+            appropriateFlowchart.ExecuteBlock(blockName);
+        }
+
+        if(manager.pomoRunning && isPomo)
+        {
             appropriateFlowchart.ExecuteBlock(blockName);
         }
 
