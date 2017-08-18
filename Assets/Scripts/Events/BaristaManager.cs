@@ -140,7 +140,7 @@ public class BaristaManager : MonoBehaviour
     //  1. Moves to a random table in the cafe and takes order
     //  2. Takes order and waits at the table for x seconds
     //  3. Moves to counter and makes order and waits for x seconds
-    //  4. Delivers order to the table that ordered and waits for x seconds
+    //  4. Delivers order to the table that ordered
     //  5. Resets back and moves to another random table
     void ServingRandoms()
     {
@@ -161,7 +161,7 @@ public class BaristaManager : MonoBehaviour
                 }
             case baristaAction.Wait:
                 {
-                    if (timer <= 0)
+                    if (timer <= 0.0f)
                     {
                         currentAction = baristaAction.MoveCounter;
                         agent.SetDestination(behindCounter.position);
