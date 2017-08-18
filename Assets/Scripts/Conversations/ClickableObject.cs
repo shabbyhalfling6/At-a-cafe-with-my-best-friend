@@ -13,20 +13,24 @@ public class ClickableObject : MonoBehaviour {
     public string blockName;
 
     public int clicksBeforeExecute = 1;
-    private int clicksBeforeExecuteIn;
+    public int clicksBeforeExecuteIn;
 
     //if the object is a coffee cup check this in the inspector
-    public bool isCoffeeCup = false;
+    public bool playerDrink = false;
+    public bool isCoffee = true;
     public bool isPomo = false;
 
     //coffee cup sprites (probably should do this somewhere else)
     public Sprite[] coffeeCupSprites;
     public Sprite[] teaCupSprites;
 
+    public SpriteRenderer spriteRenderer;
+
     void Start()
     {
         manager = GameObject.FindGameObjectWithTag("Manager").GetComponent<ConversationManager>();
         cursor = GameObject.FindGameObjectWithTag("Cursor").GetComponent<Image>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         //initalise clicks initial value
         clicksBeforeExecuteIn = clicksBeforeExecute;
@@ -53,8 +57,17 @@ public class ClickableObject : MonoBehaviour {
         }
 
         //(poop)
-        if (isCoffeeCup)
-            this.GetComponent<SpriteRenderer>().sprite = coffeeCupSprites[clicksBeforeExecute];
+        if (playerDrink)
+        {
+            if (isCoffee)
+            {
+                spriteRenderer.sprite = coffeeCupSprites[clicksBeforeExecute];
+            }
+            else
+            {
+                spriteRenderer.sprite = teaCupSprites[clicksBeforeExecute];
+            }
+        }
     }
 
 
