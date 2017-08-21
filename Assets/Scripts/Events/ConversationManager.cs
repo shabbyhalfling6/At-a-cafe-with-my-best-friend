@@ -40,13 +40,24 @@ public class ConversationManager : MonoBehaviour {
         conversationBlockNames.Add("Pain");
         conversationBlockNames.Add("Knifey");
         conversationBlockNames.Add("Music");
-
-        //fungus compliments - NEED TO ADD TO FLOWCHART AND CHECK FLOWCHART
-        /*conversationBlockNames.Add("Linda Evangelista");
-        conversationBlockNames.Add("You're beautiful");
+        conversationBlockNames.Add("Baby Cheeks");
+        conversationBlockNames.Add("Tiniest Bluetooth");
+        conversationBlockNames.Add("Linda Evangelista");
+        conversationBlockNames.Add("Beautiful");
         conversationBlockNames.Add("I love you");
-        conversationBlockNames.Add("You look great today");
-        conversationBlockNames.Add("Better Person");*/
+        conversationBlockNames.Add("You look great");
+        conversationBlockNames.Add("Better Person");
+        conversationBlockNames.Add("Waxed");
+        conversationBlockNames.Add("Bus seats");
+        conversationBlockNames.Add("Food Mishaps");
+        conversationBlockNames.Add("Catcalling");
+        conversationBlockNames.Add("Bad pickup lines");
+        conversationBlockNames.Add("Impact");
+        conversationBlockNames.Add("Guy Coworker");
+        conversationBlockNames.Add("Gross Food");
+        conversationBlockNames.Add("Shame");
+        conversationBlockNames.Add("Magpie");
+        conversationBlockNames.Add("Unwanted Text");
     }
 	
 	// Update is called once per frame
@@ -97,8 +108,14 @@ public class ConversationManager : MonoBehaviour {
     {
         pomoRunning = true;
     }
+
     public void SetPomoRunFalse()
     {
         pomoRunning = false;
+    }
+
+    public void AddBlock(string newBlock)
+    {
+        conversationBlockNames.Add(newBlock);
     }
 }
