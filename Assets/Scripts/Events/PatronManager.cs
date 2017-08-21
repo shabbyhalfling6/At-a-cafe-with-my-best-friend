@@ -17,6 +17,8 @@ public class PatronManager : MonoBehaviour {
     Sprite notSipping;
     bool sippingCoffee = false;
 
+    public AudioClip[] cupChinkAudio;
+
     // Use this for initialization
     void Start () {
         timeSinceSip = Time.time;
@@ -40,6 +42,10 @@ public class PatronManager : MonoBehaviour {
         gameObject.GetComponent<SpriteRenderer>().sprite = sipping;
         yield return new WaitForSeconds(3);
         gameObject.GetComponent<SpriteRenderer>().sprite = notSipping;
+        int i = Random.Range(0, cupChinkAudio.Length);
+        AudioSource audioSource = GetComponent<AudioSource>();
+        audioSource.clip = cupChinkAudio[i];
+        audioSource.Play();
         timeSinceSip = Time.time;
         timeToSip = timeSinceSip + Random.Range(minTime, maxTime);
         sippingCoffee = false;

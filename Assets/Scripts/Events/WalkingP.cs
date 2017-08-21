@@ -15,11 +15,6 @@ public class WalkingP : MonoBehaviour {
     float speed = 4f;
 
     bool atCounter = false;
-
-	// Use this for initialization
-	void Start () {
-		
-	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -54,5 +49,4 @@ public class WalkingP : MonoBehaviour {
             counter += Time.deltaTime;
         }
     }
-
 }
