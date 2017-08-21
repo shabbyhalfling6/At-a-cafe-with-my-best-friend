@@ -19,6 +19,8 @@ public class MagicCat : MonoBehaviour {
 
     public Sprite catSprite;
 
+    public AudioClip[] arrivalNoise;
+
 	// Use this for initialization
 	void Start () {
         catAppears = Random.Range(firstMin, firstMax);
@@ -33,7 +35,16 @@ public class MagicCat : MonoBehaviour {
         {
             if (!catVisible)
             {
+                //making cat visible
                 this.GetComponent<SpriteRenderer>().sprite = catSprite;
+
+                //playing audio
+                int i = Random.Range(0, arrivalNoise.Length);
+                AudioSource audioSource = GetComponent<AudioSource>();
+                audioSource.clip = arrivalNoise[i];
+                audioSource.Play();
+
+                //the rest
                 catDisappears = Random.Range(secondMin, secondMax);
                 catHere = true;
                 chilling = 0f;

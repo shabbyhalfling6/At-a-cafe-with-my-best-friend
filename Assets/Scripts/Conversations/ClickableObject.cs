@@ -26,6 +26,8 @@ public class ClickableObject : MonoBehaviour {
 
     public SpriteRenderer spriteRenderer;
 
+    public AudioClip[] ifAudio;
+
     void Start()
     {
         manager = GameObject.FindGameObjectWithTag("Manager").GetComponent<ConversationManager>();
@@ -49,6 +51,13 @@ public class ClickableObject : MonoBehaviour {
         {
             //run block in fungus
             appropriateFlowchart.ExecuteBlock(blockName);
+            if(ifAudio != null)
+            {
+                int i = Random.Range(0, ifAudio.Length);
+                AudioSource audioSource = GetComponent<AudioSource>();
+                audioSource.clip = ifAudio[i];
+                audioSource.Play();
+            }
         }
 
         if(manager.pomoRunning && isPomo)
