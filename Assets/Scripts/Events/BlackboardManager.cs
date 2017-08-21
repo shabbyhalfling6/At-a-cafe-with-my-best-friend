@@ -13,7 +13,8 @@ public class BlackboardManager : MonoBehaviour {
         "Livin' la vida mocha",
         "I like big cups and I cannot lie",
         "Have a cup of positivi-tea!",
-        "Pour choices flow from a lack of coffee"
+        "Pour choices flow from a lack of coffee", 
+        "Hit me with your best shot"
     };
     private string currentPun;
     public Text textbox;
