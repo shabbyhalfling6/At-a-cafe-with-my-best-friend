@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 142e58a885e147d40821cb1abbd1b4d1
+timeCreated: 1503448052
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Give You What You Like
+  fontNames:
+  - Give You What You Like
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
