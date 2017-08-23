@@ -55,8 +55,12 @@ public class ClickableObject : MonoBehaviour {
             {
                 int i = Random.Range(0, ifAudio.Length);
                 AudioSource audioSource = GetComponent<AudioSource>();
-                audioSource.clip = ifAudio[i];
-                audioSource.Play();
+
+                if (ifAudio.Length > 0)
+                {
+                    audioSource.clip = ifAudio[i];
+                    audioSource.Play();
+                }
             }
         }
 
