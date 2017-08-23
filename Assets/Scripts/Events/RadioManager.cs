@@ -27,5 +27,6 @@ public class RadioManager : MonoBehaviour {
         //currentChannel.
         currentChannel.Play();
         //currentChannel.loop = true;
+        Debug.Log(radioChannels[i]);
     }
 }
