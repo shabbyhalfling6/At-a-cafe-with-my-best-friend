@@ -33,7 +33,6 @@ public class ConversationManager : MonoBehaviour {
         nextConvoStart = convoCeasedTime + Random.Range(minNextTime, maxNextTime); //set the time the friend starts talking to you - should be 15-60
         
         //fungus conversations
-        conversationBlockNames.Add("Food Mishaps");
         conversationBlockNames.Add("Tinder");
         conversationBlockNames.Add("Dreams");
         conversationBlockNames.Add("Mean Girls");
